@@ -2,7 +2,6 @@
 // Calculate ratio (EBT / profit)
 // Output EBT, profit and the ratio
 
-
 package buildingprofitcalculator
 
 import "fmt"
