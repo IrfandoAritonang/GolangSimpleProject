@@ -15,9 +15,13 @@ func main() {
 
 
 
-	fmt.Println("ebt: ", ebt)
-	fmt.Println("profit: ", profit)
-	fmt.Println("ratio: ",ratio)
+	// fmt.Println("ebt: ", ebt)
+	// fmt.Println("profit: ", profit)
+	// fmt.Println("ratio: ",ratio)
+	fmt.Printf("%.2f\n", ebt)
+	fmt.Printf("%.2f\n", profit)
+	fmt.Printf("%.3fn", ratio)
+
 }
 
 
