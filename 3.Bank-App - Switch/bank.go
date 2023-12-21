@@ -1,9 +1,32 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"strconv" //"string conversion" yang digunakan untuk melakukan konversi antara nilai numerik dan representasi stringnya, serta untuk melakukan manipulasi pada string.
 )
+
+const accountBalanceFile ="balance.txt"
+
+//membaca data dari file yang sudah ada atau dibuat
+//_ untuk meletakkan variabel yang akan datang karena belum digunakan
+func getBalanceFromFile() (float64, error) {
+	data, err :=os.ReadFile(accountBalanceFile)
+	//nil --> null
+	// jika file tidak ada maka akan munncul pesan eror
+	if err != nil {
+		return 1000, errors.New("Failed to find balance file.")
+	}
+
+	balanceText := string(data)
+	balance, err := strconv.ParseFloat(balanceText, 64)//64 merupakan nilai float default 
+	if err != nil {
+		return 1000, errors.New("Failed to parse stored balance value.")
+	}
+
+	return balance, nil
+}
 
 //menyimpan data ke file agar data tetap tersimpan
 func writeBalanceToFile(balance float64) {
@@ -15,7 +38,15 @@ func writeBalanceToFile(balance float64) {
 func main() {
 
 	//data
-	var accountBalance = 1000.0
+	// var accountBalance = 1000.0
+	var accountBalance, err = getBalanceFromFile()
+
+	if err != nil {
+		fmt.Println("Error")
+		fmt.Println(err)
+		fmt.Println("---------")
+		panic("Can't continue, sorry")//karena memang itu dimaksudkan untuk digunakan dalam kasus-kasus di mana Anda tidak bisa melanjutkan. Ini juga akan mengakhiri eksekusi aplikasi,
+	}
 
 	fmt.Println("Welcome to Bank BRI :)")
  
